@@ -6,12 +6,14 @@ on:
       - master
       - main
       - develop
+      - POC
 
   pull_request:
     branches:
       - master
       - main
       - develop
+      - POC
 
   workflow_dispatch:
 
@@ -25,7 +27,7 @@ jobs:
     strategy:
       matrix:
         environment:
-          - ubuntu-latest
+          - windows-latest
     
     env:
       DOTNET_NOLOGO: 1

@@ -4,15 +4,11 @@ on:
   push:
     branches:
       - master
-      - main
-      - develop
       - POC
 
   pull_request:
     branches:
       - master
-      - main
-      - develop
       - POC
 
   workflow_dispatch:
@@ -65,7 +61,7 @@ jobs:
         run: |
           dotnet build ${{ env.Solution }} --configuration ${{ env.Configuration }} /p:ContinuousIntegrationBuild=true --no-restore
 
-      - name: Build Solution
+      - name: Build db
         run: |
           dotnet build ${{ env.Solution }} --configuration ${{ env.Configuration }} -o /dacpacs--no-restore
      

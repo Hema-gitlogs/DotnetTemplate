@@ -65,6 +65,10 @@ jobs:
         run: |
           dotnet build ${{ env.Solution }} --configuration ${{ env.Configuration }} /p:ContinuousIntegrationBuild=true --no-restore
 
+      - name: Build Solution
+        run: |
+          dotnet build ${{ env.Solution }} --configuration ${{ env.Configuration }} -o /dacpacs--no-restore
+     
       - name: Run Unit Tests
         run: |
           dotnet test ${{ env.TestProjectPath }} --configuration ${{ env.Configuration }} --no-build

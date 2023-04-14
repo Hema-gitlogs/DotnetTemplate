@@ -33,6 +33,7 @@ jobs:
       TestProjectPath: './DotnetTemplate.Tests/DotnetTemplate.Tests.csproj'
       Configuration: 'Release'
       Solution: 'DotnetTemplate.sln'
+      dbSolution: './DotnetTemplate/DB_build/AccountPlanningDatabase.sln'
       ArtifactName: 'drop'
       ArtifactPath: 'publish'
       PathToTestCoverage: './DotnetTemplate.Tests/TestResults/coverage.info'
@@ -63,7 +64,7 @@ jobs:
 
       - name: Build db
         run: |
-          dotnet build ${{ env.Solution }} --configuration ${{ env.Configuration }} -o /dacpacs --no-restore
+          dotnet build ${{ env.dbSolution }} --configuration ${{ env.Configuration }} -o /dacpacs --no-restore
      
       - name: Run Unit Tests
         run: |

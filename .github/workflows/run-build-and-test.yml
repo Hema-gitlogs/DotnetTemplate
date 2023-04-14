@@ -64,7 +64,7 @@ jobs:
 
       - name: Build db
         run: |
-          dotnet build ${{ env.dbSolution }} --configuration ${{ env.Configuration }} -o /dacpacs --no-restore
+          dotnet build ${{ env.dbSolution }} --configuration ${{ env.Configuration }} --no-restore
      
       - name: Run Unit Tests
         run: |

@@ -3,13 +3,11 @@
 on:
   push:
     branches:
-      - master
-      - POC
+      - POC-db
 
   pull_request:
     branches:
-      - master
-      - POC
+      - POC-db
 
   workflow_dispatch:
 

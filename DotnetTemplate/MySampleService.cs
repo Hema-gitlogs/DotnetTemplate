@@ -11,4 +11,5 @@ public static class MySampleService
     {
         return "Output from method two.";
     }
+    
 }

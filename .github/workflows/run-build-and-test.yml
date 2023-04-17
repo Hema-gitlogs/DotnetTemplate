@@ -67,10 +67,14 @@ jobs:
         run: |
           dotnet build ${{ env.Solution }} --configuration ${{ env.Configuration }} /p:ContinuousIntegrationBuild=true --no-restore
 
-      - name: Build db
+      # Find msbuild
+      - name: Add msbuild to PATH
+        uses: microsoft/setup-msbuild@v1.3.1
+      # create dacpac using MSBUILD
+      - name: Build Database project
         run: |
-          dotnet build ${{ env.dbSolution }} --configuration ${{ env.Configuration }} 
-     
+          msbuild.exe AzureSQLDB.sqlproj /p:Configuration=Release
+
       - name: Run Unit Tests
         run: |
           dotnet test ${{ env.TestProjectPath }} --configuration ${{ env.Configuration }} --no-build
@@ -93,3 +97,4 @@ jobs:
         with:
           name: ${{ env.ArtifactName }}
           path: ${{ env.ArtifactPath }}
+

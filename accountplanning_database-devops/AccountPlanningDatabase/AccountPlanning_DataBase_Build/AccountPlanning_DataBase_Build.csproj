@@ -1,0 +1,25 @@
+<Project Sdk="MSBuild.Sdk.SqlProj/2.4.0">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+     <SqlServerVersion>SqlAzure</SqlServerVersion>
+  </PropertyGroup>
+<ItemGroup>
+                <Content Include="..\AccountPlanningDatabase\dbo\Tables\*.sql" />
+                <Content Include="..\AccountPlanningDatabase\dbo\Stored Procedures\*.sql" />
+                <None Include="..\AccountPlanningDatabase\dbo\Insertion\*.sql" />
+        </ItemGroup>
+        <ItemGroup>
+                <Content Remove="Scripts\**\*.sql" />
+                <None Include="Scripts\**\*.sql" />
+        </ItemGroup>
+
+        <ItemGroup>
+                <PostDeploy Include=".\Scripts\Script.PostDeployment1.sql" />
+        </ItemGroup>
+
+        <ItemGroup>
+          <PackageReference Include="Microsoft.SqlServer.DacFx" Version="161.6374.0" />
+        </ItemGroup>
+
+</Project>

@@ -1,0 +1,5 @@
+﻿CREATE TABLE dbo.InfluencerKdm
+	(
+	Id INT IDENTITY(1,1) PRIMARY KEY,
+	Name NVARCHAR(200)
+	)

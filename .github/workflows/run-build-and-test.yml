@@ -69,7 +69,7 @@ jobs:
 
       - name: Build db
         run: |
-          dotnet build ${{ env.dbSolution }} --configuration ${{ env.Configuration }} --no-restore
+          dotnet build ${{ env.dbSolution }} --configuration ${{ env.Configuration }} 
      
       - name: Run Unit Tests
         run: |

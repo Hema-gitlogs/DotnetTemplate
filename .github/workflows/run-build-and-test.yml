@@ -6,11 +6,6 @@ on:
       - master
       - POC
 
-  pull_request:
-    branches:
-      - master
-      - POC
-
   workflow_dispatch:
 
   schedule:
@@ -37,6 +32,7 @@ jobs:
       ArtifactName: 'drop'
       ArtifactPath: 'publish'
       PathToTestCoverage: './DotnetTemplate.Tests/TestResults/coverage.info'
+      AZURE_WEBAPP_NAME : 'saas-poc-app'
     
     steps:
       - name: Fetch Sources
@@ -62,9 +58,9 @@ jobs:
         run: |
           dotnet build ${{ env.Solution }} --configuration ${{ env.Configuration }} /p:ContinuousIntegrationBuild=true --no-restore
 
-      - name: Build db
-        run: |
-          dotnet build ${{ env.dbSolution }} --configuration ${{ env.Configuration }} 
+    # - name: Build db
+    # run: |
+    # dotnet build ${{ env.dbSolution }} --configuration ${{ env.Configuration }} 
      
       - name: Run Unit Tests
         run: |
@@ -88,19 +84,11 @@ jobs:
         with:
           name: ${{ env.ArtifactName }}
           path: ${{ env.ArtifactPath }}
-          
-  jobs:
-     name: Build
-     runs-on: ubuntu-latest
-     steps:
-      - uses: actions/checkout@v0.1.4
-      - name: copy file via ssh password
-        uses: appleboy/scp-action@v0.1.4
-        with:
-         host: ${{ secrets.HOST }}
-         username: ${{ secrets.USERNAME }}
-         password: ${{ secrets.PASSWORD }}
-         port: ${{ secrets.PORT }}
-         source: ${{ env.ArtifactPath }}
-         target: 
-          
+     
+    
+      - name: 'Run Azure webapp deploy action using publish profile credentials'
+        uses: azure/webapps-deploy@v2
+        with: 
+          ==app-name: ${{ env.AZURE_WEBAPP_NAME }} # Replace with your app name
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE  }} # Define secret variable in repository settings as per action documentation
+          package: '${{ env.ArtifactPath }}'

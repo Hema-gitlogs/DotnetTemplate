@@ -4,12 +4,12 @@ on:
   push:
     branches:
       - master
-      - POC
+      - poc-setup
 
   pull_request:
     branches:
       - master
-      - POC
+      - poc-setup
 
   workflow_dispatch:
 

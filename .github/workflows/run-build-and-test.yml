@@ -96,6 +96,7 @@ jobs:
               password: ${{ secrets.PASSWORD }}
               local: ${{ env.ArtifactPath }}
               remote: 'C:\poc'
+              
            
            
 

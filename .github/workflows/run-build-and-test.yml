@@ -50,7 +50,7 @@ jobs:
 
       - name: Build Solution
         run: |
-          dotnet build ${{ env.Solution }} --configuration ${{ env.Configuration }} /p:ContinuousIntegrationBuild=true --no-restore
+          dotnet build ${{ env.Solution }} --configuration ${{ env.Configuration }} /p:ContinuousIntegrationBuild=true 
 
     # - name: Build db
     # run: |

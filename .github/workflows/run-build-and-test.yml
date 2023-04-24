@@ -5,12 +5,12 @@ on:
   push:
     branches:
       - master
-      - poc-setup
+      - POC
 
   pull_request:
     branches:
       - master
-      - poc-setup
+      - POC
 
   workflow_dispatch:
 

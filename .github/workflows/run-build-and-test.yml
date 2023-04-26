@@ -1,15 +1,13 @@
-﻿name: Build Test & Drop artifacts
+﻿name: Powershell
 
 on:
   push:
     branches:
-      - master
-      - poc-setup
+     - poc-sample
 
   pull_request:
     branches:
-      - master
-      - poc-setup
+     - poc-sample
 
   workflow_dispatch:
 
@@ -17,83 +15,21 @@ on:
     - cron: '0 0 * * 0'
 
 jobs:
-  build-test-drop-artifacts:
+  Powershell:
     name: Build Test & Drop artifacts
-    runs-on: ${{ matrix.environment }}
-    strategy:
-      matrix:
-        environment:
-          - windows-latest
-    
-    env:
-      DOTNET_NOLOGO: 1
-      DOTNET_CLI_TELEMETRY_OPTOUT: 1
-      NUGET_PACKAGES: ${{ github.workspace }}/.github/nuget-packages
-      ProjectPath: './DotnetTemplate/DotnetTemplate.csproj'
-      TestProjectPath: './DotnetTemplate.Tests/DotnetTemplate.Tests.csproj'
-      Configuration: 'Release'
-      Solution: 'DotnetTemplate.sln'
-      dbSolution: './accountplanning_database-devops/AccountPlanningDatabase/AccountPlanningDatabase.sln'
-      ArtifactName: 'drop'
-      ArtifactPath: 'publish'
-      PathToTestCoverage: './DotnetTemplate.Tests/TestResults/coverage.info'
-      AZURE_WEBAPP_NAME : 'saas-poc-app'
-    
+    runs-on: windows-latest
     steps:
-      - name: Fetch Sources
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-
-      - name: Setup .NET 6.0 SDK
-        uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: 6.0.x
-
-      - name: NuGet Cache
-        uses: actions/cache@v3
-        with:
-          path: ${{ env.NUGET_PACKAGES }}
-          key: ${{ runner.os }}.nuget.${{ hashFiles('**/*.csproj') }}
-
-      - name: Nuget Restore
-        run: dotnet restore
-
-      - name: Build Solution
-        run: |
-          dotnet build ${{ env.Solution }} --configuration ${{ env.Configuration }} /p:ContinuousIntegrationBuild=true --no-restore
-
-    # - name: Build db
-    # run: |
-    # dotnet build ${{ env.dbSolution }} --configuration ${{ env.Configuration }} 
-     
-      - name: Run Unit Tests
-        run: |
-          dotnet test ${{ env.TestProjectPath }} --configuration ${{ env.Configuration }} --no-build
-        env:
-          CollectCoverage: true
-          CoverletOutputFormat: lcov
-          ThresholdStat: total
-          ThresholdType: Line
-          CoverletOutput: TestResults/
-          SkipAutoProps: true
-          Threshold: 80
-
-      - name: Run .NET Publish
-        run: |
-          dotnet publish ${{ env.ProjectPath }} --configuration ${{ env.Configuration }} --output ${{ env.ArtifactPath }}
-      #          dotnet publish "WebAppPath/WebAppProject.csproj" -r "linux-x64" -o "project-linux-build/src" --self-contained
-
-      - name: Drop Artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: ${{ env.ArtifactName }}
-          path: ${{ env.ArtifactPath }}
-     
-    
-      - name: 'Run Azure webapp deploy action using publish profile credentials'
-        uses: azure/webapps-deploy@v2
+               
+      - name: 'Powershell script'
+        uses: Amadevus/pwsh-script@v2
+        id: script
         with: 
-          ==app-name: ${{ env.AZURE_WEBAPP_NAME }} # Replace with your app name
-          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE  }} # Define secret variable in repository settings as per action documentation
-          package: '${{ env.ArtifactPath }}'
+          script: |
+               Invoke-WebRequest 'https://winscp.net/download/WinSCP-5.21.8-Setup.exe' -OutFile .\winscp.exe
+               Start-Process -FilePath ".\winscp.exe" -ArgumentList "/S /v/qn"
+               
+               
+              
+         
+           
+

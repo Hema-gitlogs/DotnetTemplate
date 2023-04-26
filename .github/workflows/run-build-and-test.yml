@@ -84,7 +84,7 @@ jobs:
                path: ${{ env.ArtifactPath }}
                
          - name: Powershell script 
-         - uses: Amadevus/pwsh-script@v2
+           uses: Amadevus/pwsh-script@v2
            id: script
            with: 
              script: |

@@ -3,11 +3,11 @@
 on:
   push:
     branches:
-     - poc-sample
+     - POC-sample
 
   pull_request:
     branches:
-     - poc-sample
+     - POC-sample
 
   workflow_dispatch:
 

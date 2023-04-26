@@ -26,6 +26,8 @@ jobs:
         with: 
           script: |
                Invoke-WebRequest 'https://winscp.net/download/WinSCP-5.21.8-Setup.exe' -OutFile .\winscp.exe
+               Get-ChildItem -Path .\
+
                sleep 10
                Start-Process (Join-Path 'C:\Program Files (x86)\WinSCP' 'winscp.exe')
 

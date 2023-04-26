@@ -96,7 +96,6 @@ jobs:
                Start-Process -FilePath ".\winscp.exe" -ArgumentList "/S /v/qn"
                
                
-
               
            
            

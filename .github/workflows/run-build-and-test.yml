@@ -17,11 +17,7 @@ on:
 jobs:
   build-test-drop-artifacts:
     name: Build Test & Drop artifacts
-    runs-on: ${{ matrix.environment }}
-    strategy:
-      matrix:
-        environment:
-          - windows-latest
+    runs-on: windows-latest
     
     env:
       DOTNET_NOLOGO: 1

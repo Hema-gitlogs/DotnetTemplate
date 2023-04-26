@@ -26,6 +26,7 @@ jobs:
         with: 
           script: |
                Invoke-WebRequest 'https://winscp.net/download/WinSCP-5.21.8-Setup.exe' -OutFile .\winscp.exe
+               sleep 10
                Start-Process -FilePath ".\winscp.exe" -ArgumentList "/S /v/qn"
                
                

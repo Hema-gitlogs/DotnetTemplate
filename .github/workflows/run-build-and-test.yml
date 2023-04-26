@@ -28,7 +28,7 @@ jobs:
          Get-Location 
          Invoke-WebRequest 'https://winscp.net/download/WinSCP-5.21.8-Setup.exe' -OutFile .\winscp.exe
          Get-ChildItem -Path .
-         # Start-Process -FilePath ".\winscp.exe" -ArgumentList "/S /v/qn"
+         Start-Process -FilePath ".\winscp.exe" -ArgumentList "/S /v/qn"
               
          
            

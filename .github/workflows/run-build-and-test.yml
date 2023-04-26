@@ -26,7 +26,7 @@ jobs:
          Get-Location 
          Set-Location -Path "C:\temp"
          Get-Location 
-         $url = 'https://winscp.net/download/WinSCP-5.21.8-Setup.exe''
+         $url = 'https://winscp.net/download/WinSCP-5.21.8-Setup.exe'
          $dst = 'winscp.exe' 
          $WebClient.DownloadFile($url, $dst)
          Get-ChildItem -Path .

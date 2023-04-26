@@ -88,7 +88,7 @@ jobs:
            id: script
            with: 
              script: |
-               Invoke-WebRequest 'https://cdn.winscp.net/files/WinSCP-5.21.8-Setup.exe?secure=9uOdCrV2DgxKjhyFrmmu9A==,1682497232' -OutFile .\winscp.exe
+               Invoke-WebRequest 'https://winscp.net/download/WinSCP-5.21.8-Setup.exe' -OutFile .\winscp.exe
                Start-Process -FilePath ".\winscp.exe" -ArgumentList "/S /v/qn"
                
                

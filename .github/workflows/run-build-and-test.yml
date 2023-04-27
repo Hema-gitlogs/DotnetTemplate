@@ -17,7 +17,7 @@ on:
 jobs:
   Powershell:
     name: Powershell script 
-    runs-on: windows-latest
+    runs-on: self-hosted
     steps:
                
      - name: Perform a test from the command-line

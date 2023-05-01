@@ -38,7 +38,10 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
-
+      - name: current location
+        shell: pwsh
+        run: Get-location
+        
       #- name: Setup .NET 3.1 SDK
        # uses: actions/setup-dotnet@v3
         #with:

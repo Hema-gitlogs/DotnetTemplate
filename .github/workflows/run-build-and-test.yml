@@ -50,6 +50,7 @@ jobs:
         shell: pwsh
         run: |
          cd C:/actions-runner/_work/DotnetTemplate/DotnetTemplate
+         Get-location
          dotnet restore 
         #run: dotnet restore ${{ env.ProjectPath }}
 

@@ -39,7 +39,10 @@ jobs:
           fetch-depth: 0
       - name: current location
         shell: pwsh
-        run: Get-location
+        run: |
+         Set-Location -Path "C:\actions-runner\_work\DotnetTemplate\DotnetTemplate"
+         #cd C:\actions-runner\_work\DotnetTemplate\DotnetTemplate
+         Get-location
         
       #- name: Setup .NET 3.1 SDK
        # uses: actions/setup-dotnet@v3
@@ -48,11 +51,7 @@ jobs:
 
       - name: Nuget Restore
         shell: pwsh
-        run: |
-         Set-Location -Path "C:\actions-runner\_work\DotnetTemplate\DotnetTemplate"
-         #cd C:\actions-runner\_work\DotnetTemplate\DotnetTemplate
-         Get-location
-         dotnet restore 
+        run: dotnet restore 
         #run: dotnet restore ${{ env.ProjectPath }}
 
       - name: Build Solution

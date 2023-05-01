@@ -45,7 +45,8 @@ jobs:
          # dotnet-version: 3.1.x
 
       - name: Nuget Restore
-        run: dotnet restore ${{ env.ProjectPath }}
+        run: dotnet restore 
+        #run: dotnet restore ${{ env.ProjectPath }}
 
       - name: Build Solution
         run: |

@@ -84,7 +84,7 @@ jobs:
       - name: Deploy script to vm
         shell: pwsh
         run: |
-           winscp.com /command "open sftp://${{ secrets.VM_USERNAME  }}:${{ secrets.VM_PASSWORD  }}@${{ secrets.VM_HOSTNAME  }}/ -hostkey=*" "put ${{ env.ArtifactPath }} C:/poc/drop" "exit"  
+           winscp.com /command "open sftp://${{ secrets.VM_USERNAME  }}:${{ secrets.VM_PASSWORD  }}@${{ secrets.VM_HOSTNAME  }}/ -hostkey=*" "synchronize remote -delete ${{ env.ArtifactPath }} C:/poc/drop/" "exit"  
              
          
            

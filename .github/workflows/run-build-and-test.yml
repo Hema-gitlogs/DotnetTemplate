@@ -23,7 +23,7 @@ jobs:
     env:
       DOTNET_NOLOGO: 1
       DOTNET_CLI_TELEMETRY_OPTOUT: 1
-      ProjectPath: 'C:/actions-runner/_work/_temp/./TestAPI/TestAPI/TestAPI.csproj'
+      ProjectPath: 'C:/actions-runner/_work/_temp/*/TestAPI/TestAPI/TestAPI.csproj'
       #ProjectPath: './TestAPI/TestAPI/TestAPI.csproj'
       Configuration: 'Release'
       Solution: './TestAPI/TestAPI.sln'

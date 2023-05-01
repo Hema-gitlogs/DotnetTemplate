@@ -31,6 +31,7 @@ jobs:
       PathToTestCoverage: './DotnetTemplate.Tests/TestResults/coverage.info'
       AZURE_WEBAPP_NAME : 'saas-poc-app'
     
+    
     steps:
       - name: Fetch Sources
         uses: actions/checkout@v3

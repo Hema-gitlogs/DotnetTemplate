@@ -49,7 +49,8 @@ jobs:
       - name: Nuget Restore
         shell: pwsh
         run: |
-         cd C:\actions-runner\_work\DotnetTemplate\DotnetTemplate
+         Set-Location -Path "C:\actions-runner\_work\DotnetTemplate\DotnetTemplate"
+         #cd C:\actions-runner\_work\DotnetTemplate\DotnetTemplate
          Get-location
          dotnet restore 
         #run: dotnet restore ${{ env.ProjectPath }}

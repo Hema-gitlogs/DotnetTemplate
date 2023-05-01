@@ -84,7 +84,7 @@ jobs:
       - name: Deploy script to vm
         shell: pwsh
         run: |
-           winscp.com /command "open sftp://ly-iaastest-hema:Welcome12345!@20.169.140.148/ -hostkey" "put ${{ env.ArtifactPath }} C:/poc/drop" "exit"  
+           winscp.com /command "open sftp://ly-iaastest-hema:Welcome12345!@20.169.140.148/ -hostkey=*" "put ${{ env.ArtifactPath }} C:/poc/drop" "exit"  
                
 
          

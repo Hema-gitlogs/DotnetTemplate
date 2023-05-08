@@ -86,6 +86,16 @@ jobs:
         run: |
           # winscp.com /command "open sftp://${{ secrets.VM_USERNAME  }}:${{ secrets.VM_PASSWORD  }}@${{ secrets.VM_HOSTNAME  }}/ -hostkey=*" "synchronize remote -delete ${{ env.ArtifactPath }} C:/poc/drop/" "exit"  
           winscp.com /command "option confirm off" "open sftp://${{ secrets.VM_USERNAME  }}:${{ secrets.VM_PASSWORD  }}@${{ secrets.VM_HOSTNAME  }}/ -hostkey=*" "put ${{ env.ArtifactPath }} C:/poc/drop/" "exit"
+          
+      - name: Deploy script to vm
+        uses: azure/appconfiguration-sync@v1 
+        with: 
+          configurationFile: 'appsettings.json' 
+          format: 'json' 
+          # Replace <ConnectionString> with the name of the secret in your                        
+          # repository 
+          connectionString: ${{ secrets.APPCONFIG_CONNECTIONSTRING }} 
+          separator: ':' 
 
 
          

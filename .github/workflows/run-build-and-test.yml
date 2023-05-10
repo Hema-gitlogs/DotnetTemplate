@@ -28,7 +28,7 @@ jobs:
       Configuration: 'Release'
       Solution: './TestAPI/TestAPI.sln'
       ArtifactName: 'drop'
-      ArtifactPath: 'publish'
+      ArtifactPath: 'Build_artifacts'
       PathToTestCoverage: './DotnetTemplate.Tests/TestResults/coverage.info'
       AZURE_WEBAPP_NAME : 'saas-poc-app'
     
@@ -88,7 +88,7 @@ jobs:
           # winscp.com /command "open sftp://${{ secrets.VM_USERNAME  }}:${{ secrets.VM_PASSWORD  }}@${{ secrets.VM_HOSTNAME  }}/ -hostkey=*" "synchronize remote -delete ${{ env.ArtifactPath }} C:/poc/drop/" "exit"  
           winscp.com /command "option confirm off" "open sftp://${{ secrets.VM_USERNAME  }}:${{ secrets.VM_PASSWORD  }}@${{ secrets.VM_HOSTNAME  }}/ -hostkey=*" "put ${{ env.ArtifactPath }} C:/poc/drop/" "exit"
           
-      - name: Deploy script to vm
+      - name: Deploy and sync app config 
         uses: azure/appconfiguration-sync@v1 
         with: 
           configurationFile: './TestAPI/TestAPI/appsettings.json' 

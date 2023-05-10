@@ -77,7 +77,7 @@ jobs:
       - name: Get Workflow ID
         id: get_workflow_id
         run: |
-           echo "workflow_id: ${{ github.run_id }}"
+           echo "workflow_id: ${{ github.run_id }} is ${{ github.workflow }}"
      
       - name: Create Release       
         id: create_release
@@ -86,7 +86,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
         with:
           token: ${{ secrets.MYPAT }}
-          tag_name: ${{ steps.get_workflow_id.outputs.workflow_id }}
+          tag_name: ${{ github.workflow }}
           release_name: Release ${{ steps.get_workflow_id.outputs.workflow_id }}
           #tag_name: ${{ github.ref }}
           #release_name: Release ${{ github.ref }}

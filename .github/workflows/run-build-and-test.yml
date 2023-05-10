@@ -101,7 +101,7 @@ jobs:
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ${{ env.ArtifactPath }}
-          asset_name: ${{ env.ArtifactName }}
+          asset_name: ${{ env.ArtifactName }}.zip
           asset_content_type: application/zip
     
       - name: 'Run Azure webapp deploy action using publish profile credentials'

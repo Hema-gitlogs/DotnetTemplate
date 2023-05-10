@@ -80,8 +80,10 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
         with:
           token: ${{ secrets.MYPAT }}
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
+          tag_name: v1.0.0
+          release_name: Release v1.0.0
+          #tag_name: ${{ github.ref }}
+          #release_name: Release ${{ github.ref }}
           body: |
             This is the release notes for version ${{ github.ref }}.
 

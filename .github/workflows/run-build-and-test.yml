@@ -86,8 +86,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
         with:
           token: ${{ secrets.MYPAT }}
-          tag_name: ${{ github.workflow }}
-          release_name: Release ${{ steps.get_workflow_id.outputs.workflow_id }}
+          tag_name: ${{ github.run_id }}
+          release_name: Release ${{ github.run_id }}
           #tag_name: ${{ github.ref }}
           #release_name: Release ${{ github.ref }}
           body: |

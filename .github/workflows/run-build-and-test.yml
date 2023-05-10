@@ -73,6 +73,11 @@ jobs:
         with:
           name: ${{ env.ArtifactName }}
           path: ${{ env.ArtifactPath }}
+          
+      - name: Get Workflow ID
+        id: get_workflow_id
+        run: |
+           echo "Workflow ID: ${{ github.run_id }}"
      
       - name: Create Release       
         id: create_release
@@ -81,8 +86,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
         with:
           token: ${{ secrets.MYPAT }}
-          tag_name: v1.0.0
-          release_name: Release v1.0.0
+          tag_name: ${{ steps.get_workflow_id.outputs.workflow_id }}
+          release_name: Release ${{ steps.get_workflow_id.outputs.workflow_id }}
           #tag_name: ${{ github.ref }}
           #release_name: Release ${{ github.ref }}
           body: |

@@ -74,7 +74,7 @@ jobs:
         shell: pwsh
         run: |
           #zip -r ./artifacts/MyArtifact.zip ./bin
-          Compress-Archive -Path "./bin" -DestinationPath "./artifacts/MyArtifact.zip"
+          Compress-Archive -Path "./bin/" -DestinationPath "./artifacts/MyArtifact.zip"
 
         working-directory: .
         

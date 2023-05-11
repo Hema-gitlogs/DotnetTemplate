@@ -28,7 +28,7 @@ jobs:
       Configuration: 'Release'
       Solution: './TestAPI/TestAPI.sln'
       #ArtifactName: 'drop'
-      ArtifactPath: './publish/drop.zip'
+      ArtifactPath: './bin'
       PathToTestCoverage: './DotnetTemplate.Tests/TestResults/coverage.info'
       AZURE_WEBAPP_NAME : 'saas-poc-app'
     
@@ -67,7 +67,14 @@ jobs:
         run: |
           dotnet publish ${{ env.ProjectPath }} --configuration ${{ env.Configuration }} --output ${{ env.ArtifactPath }}
       #          dotnet publish "WebAppPath/WebAppProject.csproj" -r "linux-x64" -o "project-linux-build/src" --self-contained
+      - name: Create artifact directory
+        run: mkdir ./artifacts
 
+      - name: Publish artifact
+        run: |
+          zip -r ./artifacts/MyArtifact.zip ./bin
+        working-directory: .
+        
       - name: Drop Artifact
         uses: actions/upload-artifact@v3
         with:
@@ -100,8 +107,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: .\publish\*.zip
-          asset_name: Myartifact.zip
+          asset_path: ./artifacts/MyArtifact.zip
+          asset_name: MyArtifact.zip
           asset_content_type: application/zip
     
       - name: 'Run Azure webapp deploy action using publish profile credentials'

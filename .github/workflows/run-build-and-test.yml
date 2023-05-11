@@ -28,7 +28,7 @@ jobs:
       Configuration: 'Release'
       Solution: './TestAPI/TestAPI.sln'
       ArtifactName: 'drop'
-      ArtifactPath: 'Build_artifacts'
+      ArtifactPath: './Build_artifacts'
       PathToTestCoverage: './DotnetTemplate.Tests/TestResults/coverage.info'
       AZURE_WEBAPP_NAME : 'saas-poc-app'
     

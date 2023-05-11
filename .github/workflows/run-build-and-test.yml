@@ -27,8 +27,8 @@ jobs:
       ProjectPath: './TestAPI/TestAPI/TestAPI.csproj'
       Configuration: 'Release'
       Solution: './TestAPI/TestAPI.sln'
-      ArtifactName: 'drop'
-      ArtifactPath: './Build_artifacts/drop.zip'
+      #ArtifactName: 'drop'
+      ArtifactPath: 'drop.zip'
       PathToTestCoverage: './DotnetTemplate.Tests/TestResults/coverage.info'
       AZURE_WEBAPP_NAME : 'saas-poc-app'
     
@@ -71,7 +71,7 @@ jobs:
       - name: Drop Artifact
         uses: actions/upload-artifact@v3
         with:
-          name: ${{ env.ArtifactName }}
+          #name: ${{ env.ArtifactName }}
           path: ${{ env.ArtifactPath }}
           
       - name: Get Workflow ID
